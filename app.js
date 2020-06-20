@@ -45,12 +45,12 @@ class Particle{
 
         // Check collision detection.
         this.checkCollisionDetection();
-
-        // move particle.
-        this.moveParticle();
-
+   
         // draw particle.
         this.draw();
+        
+        // move particle.
+        this.moveParticle();
     }
 
     moveParticle() {
@@ -62,25 +62,25 @@ class Particle{
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-        let JUMP = 3;// How many pixels the particle will jump when hit the radius.
+        let BOUNCE = 3;// How many pixels the particle will move away when it hits the radius.
         
         // check the distance between the particle and the mouse position.
         if (distance < mouse.radius + this.size) {
             // check if the particle comes from the right side.
             if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                this.x += JUMP;
+                this.x += BOUNCE;
             }
             // check if the particle comes from the left side.
             if (mouse.x > this.x && this.x > this.size * 10) {
-                this.x -= JUMP;
+                this.x -= BOUNCE;
             }
             // check if the particle comes from the top.
             if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                this.y += JUMP;
+                this.y += BOUNCE;
             }
             // check if the particle comes from the bottom.
             if (mouse.y > this.y && this.y > this.size * 10) {
-                this.y -= JUMP;
+                this.y -= BOUNCE;
             }
             this.directionX = -this.directionX;
             this.directionY = -this.directionY;
